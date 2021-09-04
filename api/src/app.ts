@@ -1,12 +1,15 @@
-import "express-async-errors";
-import express from "express";
-import session from "express-session";
 import { errors } from "celebrate";
+import express from "express";
+import "express-async-errors";
+import session from "express-session";
+import helmet from "helmet";
 import { SESSION_OPTS } from "./config";
-import { validate, loginSchema } from "./validation";
 import { notFound, serverError } from "./middleware";
+import { loginSchema, validate } from "./validation";
 
 const app = express();
+
+app.use(helmet());
 
 app.use(session(SESSION_OPTS));
 
