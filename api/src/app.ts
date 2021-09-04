@@ -5,7 +5,7 @@ import session from "express-session";
 import helmet from "helmet";
 import { SESSION_OPTS } from "./config";
 import { notFound, serverError } from "./middleware";
-import { loginSchema, validate } from "./validation";
+import { router } from "./routes";
 
 const app = express();
 
@@ -15,15 +15,7 @@ app.use(session(SESSION_OPTS));
 
 app.use(express.json());
 
-app.get("/", (req, res) => res.json({}));
-
-app.post("/login", validate(loginSchema), (req, res) => {
-  const { email, password } = req.body;
-
-  req.session.userId = 1;
-
-  res.json({ message: "OK" });
-});
+app.use(router);
 
 app.use(notFound);
 
