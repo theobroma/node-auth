@@ -4,8 +4,8 @@ import "express-async-errors";
 import session from "express-session";
 import helmet from "helmet";
 import { SESSION_OPTS } from "./config";
+import { auth, verify } from "./routes";
 import { notFound, serverError } from "./middleware";
-import { router } from "./routes";
 
 const app = express();
 
@@ -15,7 +15,10 @@ app.use(session(SESSION_OPTS));
 
 app.use(express.json());
 
-app.use(router);
+app.use(
+    auth, // login, logout, register
+    verify // email verification, resend
+  );
 
 app.use(notFound);
 
