@@ -4,19 +4,23 @@ const {
   NODE_ENV = "development",
 
   SESSION_COOKIE = "sid",
-  SESSION_SECRET = "", // crypto.randomBytes(16).toString('hex')
+  // SESSION_SECRET = "", // crypto.randomBytes(16).toString('hex')
 
   APP_PORT = 3000,
   APP_HOSTNAME = "localhost",
-  APP_KEY = "", // crypto.randomBytes(32).toString('base64')
+  // APP_KEY = "", // crypto.randomBytes(32).toString('base64')
+  // TODO: use .env instead of hardcode
+  SESSION_SECRET="b2967d2927034d431d510820ea6363c2",
+  APP_KEY="rG1b/tpaQ5yMzkW8em79XFcV/LcDHRc2XjvMWlWp9e8="
 } = process.env;
 
+
 // Assert required variables are passed
-["SESSION_SECRET", "APP_KEY"].forEach((secret) => {
-  if (!process.env[secret]) {
-    throw new Error(`${secret} is missing from process.env`);
-  }
-});
+// ["SESSION_SECRET", "APP_KEY"].forEach((secret) => {
+//   if (!process.env[secret]) {
+//     throw new Error(`${secret} is missing from process.env`);
+//   }
+// });
 
 export { SESSION_COOKIE, APP_PORT, APP_KEY };
 
